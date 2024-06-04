@@ -9,6 +9,10 @@ You can find the repository for this project at [Github](https://github.com/camp
 
 This app is hosted on [Github Pages](https://campbellgarth.github.io/meet/)
 
+## Serverless Architecture 
+
+The Meet App uses serverless technology hosted by AWS Lambda. It will implement serverless functions in order to authenticate users. Instead of a traditional server being used to authorize users, serverless functions will be used as an authorization server and generate the necessary tokens. Afterwards, the event data from the Google Calendars API can be retrieved.
+
 ## User Stories
 
 ### Feature 1: Filter Events By City
