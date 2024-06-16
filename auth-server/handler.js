@@ -1,7 +1,9 @@
+'use strict';
 const { google } = require('googleapis');
+
 const calendar = google.calendar('v3');
 const SCOPES = [
-  'https://www.googleapis.com/auth/calendar.events.public.readonly/',
+  'https://www.googleapis.com/auth/calendar.events.public.readonly',
 ];
 const { CLIENT_SECRET, CLIENT_ID, CALENDAR_ID } = process.env;
 const redirect_uris = ['https://campbellgarth.github.io/meet/'];
@@ -13,8 +15,11 @@ const oAuth2Client = new google.auth.OAuth2(
 );
 
 module.exports.getAuthURL = async () => {
-  //scopes array is passed to the 'scope' option
-
+  /**
+   *
+   * Scopes array is passed to the `scope` option.
+   *
+   */
   const authUrl = oAuth2Client.generateAuthUrl({
     access_type: 'offline',
     scope: SCOPES,
@@ -30,4 +35,38 @@ module.exports.getAuthURL = async () => {
       authUrl,
     }),
   };
+};
+
+module.exports.getAccessToken = async (event) => {
+  //decode auth code extracted from the URL query
+  const code = decodeURIComponent(`${event.pathParameters.code}`);
+
+  return new Promise((resolve, reject) => {
+    //exchange auth code for access token with callback after the exchange
+
+    oAuth2Client.getToken(code, (error, response) => {
+      if (error) {
+        return reject(error);
+      }
+      return resolve(response);
+    });
+  })
+  .then((results) => {
+    //respond with OAuth token
+    return {
+      statusCode: 200,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true,
+      },
+      body: JSON.stringify(results),
+    };
+  })
+  .catch((error) => {
+    //handle error
+    return {
+      statusCode: 500,
+      body: JSON.stringify(error),
+    };
+  });
 };
