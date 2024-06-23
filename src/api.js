@@ -86,12 +86,14 @@ const removeQuery = () => {
 };
 
 const getToken = async (code) => {
-    const encodeCode = encodeURIComponent(code);
-    const response = await fetch (
-        'https://16rgk9hvoi.execute-api.eu-central-1.amazonaws.com/dev/api/token' + '/' + encodeCode
-    );
-    const { access_ token } = await response.json();
-    access_token && localStorage.setItem("access_token", access_token);
+  const encodeCode = encodeURIComponent(code);
+  const response = await fetch(
+    'https://16rgk9hvoi.execute-api.eu-central-1.amazonaws.com/dev/api/token' +
+      '/' +
+      encodeCode
+  );
+  const { access_token } = await response.json();
+  access_token && localStorage.setItem('access_token', access_token);
 
-    return access_token;
+  return access_token;
 };
