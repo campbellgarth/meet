@@ -8,7 +8,7 @@ const Event = ({ event }) => {
     setShowDetails(!showDetails);
   };
   return (
-    <li>
+    <li className="event">
       <h2>{event.summary}</h2>
       <p>{event.location}</p>
       <p>{event.created}</p>
@@ -18,6 +18,7 @@ const Event = ({ event }) => {
         </div>
       )}
       <button
+        className="details-btn"
         id={showDetails ? 'hide-details' : 'show-details'}
         onClick={handleToggleDetails}
       >
