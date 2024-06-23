@@ -1,5 +1,3 @@
-// src/__tests__/App.test.js
-
 import { render, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { getEvents } from '../api';
@@ -10,15 +8,12 @@ describe('<App /> component', () => {
   beforeEach(() => {
     AppDOM = render(<App />).container.firstChild;
   });
-
   test('renders list of events', () => {
     expect(AppDOM.querySelector('#event-list')).toBeInTheDocument();
   });
-
   test('render CitySearch', () => {
     expect(AppDOM.querySelector('#city-search')).toBeInTheDocument();
   });
-
   test('render NumberOfEvents', () => {
     expect(AppDOM.querySelector('#number-of-events')).toBeInTheDocument();
   });
@@ -48,9 +43,27 @@ describe('<App /> integration', () => {
     );
 
     expect(allRenderedEventItems.length).toBe(berlinEvents.length);
-
     allRenderedEventItems.forEach((event) => {
       expect(event.textContent).toContain('Berlin, Germany');
     });
+  });
+  test('renders a the number of events selected by the user', async () => {
+    const user = userEvent.setup();
+    const AppComponent = render(<App />);
+    const AppDOM = AppComponent.container.firstChild;
+
+    const NumberOfEventsDOM = AppDOM.querySelector('#number-of-events');
+    const NumberOfEventsInput =
+      within(NumberOfEventsDOM).queryByRole('textbox');
+
+    await user.clear(NumberOfEventsInput);
+
+    await user.type(NumberOfEventsInput, '10');
+
+    const EventListDOM = AppDOM.querySelector('#event-list');
+    const allRenderedEventItems =
+      within(EventListDOM).queryAllByRole('listitem');
+
+    expect(allRenderedEventItems.length).toBe(10);
   });
 });
