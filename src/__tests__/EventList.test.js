@@ -5,13 +5,13 @@ import App from '../App';
 
 describe('<EventList /> component', () => {
   let EventListComponent;
-  beforeEach(() => {
-    EventListComponent = render(<EventList />);
-  });
+
   test('has an element with "list" role', () => {
+    EventListComponent = render(<EventList />);
     expect(EventListComponent.queryByRole('list')).toBeInTheDocument();
   });
   test('renders correct number of events', async () => {
+    EventListComponent = render(<EventList />);
     const allEvents = await getEvents();
     EventListComponent.rerender(<EventList events={allEvents} />);
     expect(EventListComponent.getAllByRole('listitem')).toHaveLength(

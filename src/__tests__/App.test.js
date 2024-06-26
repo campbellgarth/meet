@@ -5,16 +5,17 @@ import App from '../App';
 
 describe('<App /> component', () => {
   let AppDOM;
-  beforeEach(() => {
-    AppDOM = render(<App />).container.firstChild;
-  });
+
   test('renders list of events', () => {
+    AppDOM = render(<App />).container.firstChild;
     expect(AppDOM.querySelector('#event-list')).toBeInTheDocument();
   });
   test('render CitySearch', () => {
+    AppDOM = render(<App />).container.firstChild;
     expect(AppDOM.querySelector('#city-search')).toBeInTheDocument();
   });
   test('render NumberOfEvents', () => {
+    AppDOM = render(<App />).container.firstChild;
     expect(AppDOM.querySelector('#number-of-events')).toBeInTheDocument();
   });
 });

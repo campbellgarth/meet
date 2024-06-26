@@ -33,6 +33,7 @@ export const getEvents = async () => {
   }
 
   const token = await getAccessToken();
+  console.log('result of token: ' + token);
 
   if (token) {
     removeQuery();

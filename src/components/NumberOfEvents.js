@@ -1,11 +1,19 @@
 import { useState } from 'react';
 
-const NumberOfEvents = ({ setCurrentNOE }) => {
+const NumberOfEvents = ({ setCurrentNOE, setErrorAlert }) => {
   const [eventNumber, setEventNumber] = useState(32);
   const handleInputChanged = (event) => {
     const value = event.target.value;
+    const parsedValue = parseInt(value, 10);
     setEventNumber(value);
-    setCurrentNOE(value);
+    let errorText; //if user puts a number less than 1 or greater than 50, or any non-number character, then throw an error
+    if (isNaN(parsedValue) || parsedValue < 1 || parsedValue > 100) {
+      errorText = 'Events must be an integer between 1 and 100';
+    } else {
+      errorText = '';
+      setCurrentNOE(value);
+    }
+    setErrorAlert(errorText);
   };
   return (
     <div id="number-of-events">
