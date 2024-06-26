@@ -15,19 +15,19 @@ const App = () => {
   const [errorAlert, setErrorAlert] = useState('');
 
   useEffect(() => {
-    const fetchData = async () => {
-      const allEvents = await getEvents();
-      const filteredEvents =
-        currentCity === 'See all cities'
-          ? allEvents
-          : allEvents.filter((event) => event.location === currentCity);
-      setEvents(filteredEvents.slice(0, currentNOE));
-      setAllLocations(extractLocations(allEvents));
-    };
     //populate list as soon as App component is mounted
     fetchData();
   }, [currentCity, currentNOE]);
 
+  const fetchData = async () => {
+    const allEvents = await getEvents();
+    const filteredEvents =
+      currentCity === 'See all cities'
+        ? allEvents
+        : allEvents.filter((event) => event.location === currentCity);
+    setEvents(filteredEvents.slice(0, currentNOE));
+    setAllLocations(extractLocations(allEvents));
+  };
   return (
     <div className="App">
       <div className="alerts-container">
