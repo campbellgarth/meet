@@ -1,4 +1,5 @@
 import mockData from './mock-data';
+import NProgress from 'nprogress';
 
 /**
  *
@@ -32,8 +33,12 @@ export const getEvents = async () => {
     return mockData;
   }
 
+  if (!navigator.onLine) {
+    const events = localStorage.getItem('lastEvents');
+    NProgress.done();
+    return events ? JSON.parse(events) : [];
+  }
   const token = await getAccessToken();
-  console.log('result of token: ' + token);
 
   if (token) {
     removeQuery();
@@ -44,6 +49,8 @@ export const getEvents = async () => {
     const response = await fetch(url);
     const result = await response.json();
     if (result) {
+      NProgress.done(); //safe fetched events data to localStorage for offline usage
+      localStorage.setItem('lastEvents', JSON.stringify(result.events));
       return result.events;
     } else return null;
   }
