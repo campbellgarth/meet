@@ -30,17 +30,17 @@ const checkToken = async (accessToken) => {
  * This function will fetch the list of all events
  */
 export const getEvents = async () => {
-  if (window.location.href.startsWith('http://localhost')) {
-    return mockData;
-  }
+  //   if (window.location.href.startsWith('http://localhost')) {
+  //     return mockData;
+  //   }
 
-  if (!navigator.onLine) {
-    const events = localStorage.getItem('lastEvents');
-    NProgress.done();
-    return events ? JSON.parse(events) : [];
-  }
+  //   if (!navigator.onLine) {
+  //     const events = localStorage.getItem('lastEvents');
+  //     NProgress.done();
+  //     return events ? JSON.parse(events) : [];
+  //   }
   const token = await getAccessToken();
-
+  console.log(token);
   if (token) {
     removeQuery();
     const url =
@@ -51,6 +51,10 @@ export const getEvents = async () => {
     const result = await response.json();
     if (result) {
       NProgress.done();
+      console.log(
+        result.events,
+        'we are console.logging events before saving to localstorage'
+      );
       localStorage.setItem('lastEvents', JSON.stringify(result.events));
       return result.events;
     } else return null;
