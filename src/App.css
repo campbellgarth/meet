@@ -111,7 +111,7 @@ input[type="number"] {
   width: 99%;
 }
 .pie-label {
-  font-size: 14px;
+  font-size: 18px;
 }
 
 @media (max-width: 768px){
@@ -123,6 +123,6 @@ input[type="number"] {
     grid-template-columns: 1fr;
   }
   .pie-label {
-    font-size: 10px;
+    font-size: 12px;
   }
 }
