@@ -35,7 +35,6 @@ const EventGenresChart = ({ events }) => {
         fill="#8884d8"
         textAnchor={x > cx ? 'start' : 'end'}
         dominantBaseline="central"
-        style={{ overflow: 'visible' }}
       >
         {`${genres[index]} ${(percent * 100).toFixed(0)}%`}
       </text>
@@ -45,7 +44,11 @@ const EventGenresChart = ({ events }) => {
     setData(getData());
   }, [`${events}`]);
   return (
-    <ResponsiveContainer width="99%" height={400}>
+    <ResponsiveContainer
+      className="responsive-container"
+      width="99%"
+      height={400}
+    >
       <PieChart>
         <Pie
           data={data}
@@ -53,7 +56,7 @@ const EventGenresChart = ({ events }) => {
           fill="#8884d8"
           labelLine={false}
           label={renderCustomizedLabel}
-          outerRadius={130}
+          outerRadius="70%"
         />
       </PieChart>
     </ResponsiveContainer>

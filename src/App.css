@@ -104,7 +104,15 @@ input[type="number"] {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
+.responsive-container {
+  margin: 0 auto; 
+  padding: 0 10px; 
+}
+
 @media (max-width: 768px){
+  .responsive-container {
+    padding: 0 5%; 
+  }
   .charts-container {
     grid-template-columns: 1fr;
   }
