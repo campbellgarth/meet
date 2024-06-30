@@ -111,18 +111,16 @@ input[type="number"] {
   width: 99%;
 }
 .pie-label {
-  font-size: 14px;
+  font-size: 12px;
 }
 
 @media (max-width: 768px){
   .responsive-container {
     padding: 0 5%; 
    height:300px;
+   width: 99%
   }
   .charts-container {
     grid-template-columns: 1fr;
-  }
-  .pie-label {
-    font-size: 12px;
   }
 }
