@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ResponsiveContainer, PieChart, Pie } from 'recharts';
-
+import '../App.css';
 const EventGenresChart = ({ events }) => {
   const [data, setData] = useState([]);
   const genres = ['React', 'JavaScript', 'Node', 'jQuery', 'Angular'];
@@ -44,11 +44,7 @@ const EventGenresChart = ({ events }) => {
     setData(getData());
   }, [`${events}`]);
   return (
-    <ResponsiveContainer
-      className="responsive-container"
-      width="99%"
-      height={400}
-    >
+    <ResponsiveContainer className="responsive-container">
       <PieChart>
         <Pie
           data={data}
