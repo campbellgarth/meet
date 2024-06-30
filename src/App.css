@@ -122,7 +122,9 @@ input[type="number"] {
     height: 300px;
     width: 99%;
   }
-
+  .pie-label {
+    font-size: 10px;
+  }
   .charts-container {
     grid-template-columns: 1fr;
   }
