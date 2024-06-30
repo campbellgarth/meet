@@ -110,6 +110,9 @@ input[type="number"] {
   height: 400px;
   width: 99%;
 }
+.pie-label {
+  font-size: 14px;
+}
 
 @media (max-width: 768px){
   .responsive-container {
@@ -118,5 +121,8 @@ input[type="number"] {
   }
   .charts-container {
     grid-template-columns: 1fr;
+  }
+  .pie-label {
+    font-size: 10px;
   }
 }

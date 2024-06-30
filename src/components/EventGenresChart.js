@@ -33,6 +33,7 @@ const EventGenresChart = ({ events }) => {
         x={x}
         y={y}
         fill="#8884d8"
+        className="pie-label"
         textAnchor={x > cx ? 'start' : 'end'}
         dominantBaseline="central"
       >
